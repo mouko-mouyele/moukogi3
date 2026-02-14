@@ -22,6 +22,28 @@ use App\Http\Controllers\AlertController;
 |
 */
 
+use Illuminate\Support\Facades\Artisan;
+
+// ROUTE TEMPORAIRE POUR REMPLIR LA BASE AIVEN
+Route::get('/force-setup', function () {
+    try {
+        // Crée les tables
+        Artisan::call('migrate:fresh --force');
+        // Remplit avec ton DatabaseSeeder (tes 3 utilisateurs)
+        Artisan::call('db:seed --force');
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Base Aiven réinitialisée et utilisateurs créés !'
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage()
+        ], 500);
+    }
+});
+
 // Routes publiques
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -37,7 +59,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Catégories
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/categories/{category}', [CategoryController::class, 'show']);
-    
+
     // Produits
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/products/{product}', [ProductController::class, 'show']);
