@@ -1,0 +1,12 @@
+{
+  "apps": [
+    {
+      "app_id": "app_9b07d336-63b2-41a5-8aa5-7b8eb7669c02",
+      "org_id": "user_3b3dae7c-8bfe-49e5-bcf5-dfb812d73fc2",
+      "deploy_url": "https://push-n3-par-clevercloud-customers.services.clever-cloud.com/app_9b07d336-63b2-41a5-8aa5-7b8eb7669c02.git",
+      "git_ssh_url": "git+ssh://git@push-n3-par-clevercloud-customers.services.clever-cloud.com/app_9b07d336-63b2-41a5-8aa5-7b8eb7669c02.git",
+      "name": "moukogi3",
+      "alias": "moukogi3"
+    }
+  ]
+}
