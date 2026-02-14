@@ -1,9 +1,9 @@
 services:
   - type: web
     name: moukogi3-web
+    runtime: docker
     repo: https://github.com/mouko-mouyele/moukogi3
     branch: main
-    env: static
     buildCommand: composer install --no-dev --optimize-autoloader
     startCommand: bash bin/start.sh
     envVars:
