@@ -27,7 +27,10 @@ COPY . .
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Installer les dépendances Laravel
-RUN composer install --no-dev --optimize-autoloader
+#RUN composer install --no-dev --optimize-autoloader
+
+# On force la mise à jour des dépendances directement dans Docker
+RUN composer update --no-dev --optimize-autoloader --no-interaction
 
 # Donner les permissions aux dossiers storage et bootstrap/cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
