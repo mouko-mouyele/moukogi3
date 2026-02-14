@@ -44,5 +44,8 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.
 # Exposer le port par défaut (Render utilisera sa propre variable $PORT)
 EXPOSE 80
 
-# Lancer Apache
-CMD ["apache2-foreground"]
+# Exposer le port par défaut
+EXPOSE 80
+
+# On lance la migration PUIS le serveur Apache
+CMD php artisan migrate --force && apache2-foreground
