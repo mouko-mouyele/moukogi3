@@ -1,18 +1,19 @@
 # Utiliser l'image PHP officielle avec Apache
 FROM php:8.2-apache
 
-# Installer les dépendances système et les extensions PHP nécessaires pour Laravel
+# Installer les dépendances système
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
     zip \
+    libzip-dev \
     unzip \
     git \
     libonig-dev \
     libxml2-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
 # Activer le module de réécriture d'Apache (indispensable pour les routes Laravel)
 RUN a2enmod rewrite
